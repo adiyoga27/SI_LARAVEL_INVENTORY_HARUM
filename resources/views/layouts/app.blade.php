@@ -146,13 +146,13 @@
 
 
                         <li>
-                            <a href="#" class="waves-effect">
+                            <a href="{{ route('purchase-order.index') }}" class="waves-effect">
                                 <i class="mdi mdi-store"></i>
                                 <span key="mdi-store">Pembelian</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="waves-effect">
+                            <a href="{{ route('sales.index') }}" class="waves-effect">
                                 <i class="mdi mdi-cart"></i>
                                 <span key="mdi-cart">Penjualan</span>
                             </a>

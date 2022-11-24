@@ -14,4 +14,9 @@ class SalesTransaction extends Model
         'sales_at',
         'paid_at',
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+    }
 }

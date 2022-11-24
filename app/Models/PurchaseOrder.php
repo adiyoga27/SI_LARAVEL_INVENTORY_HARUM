@@ -14,4 +14,9 @@ class PurchaseOrder extends Model
         'purchase_at',
         'paid_at',
     ];
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+    }
 }

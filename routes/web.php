@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitProductController;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('unit-product', UnitProductController::class);
     Route::resource('supplier', SupplierController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('purchase-order', PurchaseOrderController::class);
+    Route::resource('sales', SalesController::class);
 });
