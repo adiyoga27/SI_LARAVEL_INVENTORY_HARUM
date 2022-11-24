@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login | PPJU</title>
+    <title>Login | Sistem Informasi Inventory Pada Alas Harum Bali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="SISTEM INFORMASI INVENTORY PADA ALAS HARUM BALI MENGGUNAKAN QR CODE BERBASIS WEB" name="description" />
+    <meta content="codingaja.com" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ url('assets') }}/images/logo.png">
     <!-- Bootstrap Css -->
