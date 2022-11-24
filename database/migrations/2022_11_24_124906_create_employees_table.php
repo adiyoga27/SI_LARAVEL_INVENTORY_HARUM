@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name', 100);
-            $table->sting('devisi', 100)->default('accounting');
+            $table->string('devisi', 100)->default('accounting');
             $table->timestamps();
         });
     }

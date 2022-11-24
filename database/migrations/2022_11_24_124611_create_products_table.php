@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('unit_id')->references('id')->on('unit_products');
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->string('images', 100)->nullable();
             $table->string('name');
             $table->double('price');
             $table->timestamps();

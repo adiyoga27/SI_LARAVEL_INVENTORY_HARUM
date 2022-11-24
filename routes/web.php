@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UnitProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [DashboardController::class, 'index']);
+
+Route::get('/login', [AuthController::class, 'index']);
+Route::prefix('/auth')->group(function () {
+    Route::post('/verify', [AuthController::class, 'verify']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
+Route::group(['middleware' => 'auth'], function () {
+
+
+    Route::resource('category-product', CategoryProductController::class);
+    Route::resource('unit-product', UnitProductController::class);
+    Route::resource('supplier', SupplierController::class);
+    Route::resource('product', ProductController::class);
 });
