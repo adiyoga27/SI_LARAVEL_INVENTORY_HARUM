@@ -36,7 +36,7 @@
                                         <th>Kategori</th>
                                         <th>Supplier</th>
                                         <th>Nama Barang</th>
-                                        <th>Satuan/th>
+                                        <th>Satuan</th>
                                         <th>Harga</th>
                                         <th>Action</th>
 
@@ -63,9 +63,42 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Form Tambah </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('product.store') }}" method="POST">
+                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Kategori</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Satuan</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="unit_id" id="unit_id">
+                                    <option value="">Pilih Satuan</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Supplier</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="supplier_id" id="supplier_id">
+                                    <option value="">Pilih Supplier</option>
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
@@ -73,9 +106,15 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
+                            <label for="example-text-input" class="col-md-2 col-form-label">Price</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="name" id="name">
+                                <input class="form-control" type="text" name="price" id="price">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Images</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="file" name="images" id="images">
                             </div>
                         </div>
 
@@ -89,24 +128,72 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Form Edit</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="form-edit" class="form-edit" method="POST">
+                <form id="form-edit" class="form-edit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
+                    <input class="form-control" type="text" name="id" id="id" hidden>
+
                     <div class="modal-body">
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Kategori</label>
+                            <div class="col-md-10">
+
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Satuan</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="unit_id" id="unit_id">
+                                    <option value="">Pilih Satuan</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Supplier</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="supplier_id" id="supplier_id">
+                                    <option value="">Pilih Supplier</option>
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="id" id="id" hidden>
                                 <input class="form-control" type="text" name="name" id="name">
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Price</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="price" id="price">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Images</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="file" name="images" id="images">
+                            </div>
+                        </div>
+
 
 
                     </div>
@@ -145,12 +232,34 @@
                 serverSide: true,
                 ajax: "{{ route('product.index') }}",
                 columns: [{
-                        data: 'id',
-                        name: 'id'
+                        data: 'images',
+                        name: 'images',
+                        render: function(data, type, full, meta) {
+                            return "<img src=\"{{ URL::to('/') }}/storage/" + data +
+                                "\" width=\"70\" class=\"img-thumbnail\" />";
+                        },
+                    },
+                    {
+                        data: 'category',
+                        name: 'category'
+                    },
+                    {
+                        data: 'supplier',
+                        name: 'supplier'
                     },
                     {
                         data: 'name',
                         name: 'name'
+                    },
+
+                    {
+                        data: 'unit',
+                        name: 'unit'
+                    },
+
+                    {
+                        data: 'price',
+                        name: 'price'
                     },
 
                     {
@@ -163,9 +272,7 @@
             });
         });
         $('#modal_edit').on('show.bs.modal', function(event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal = $(this)
-            // Isi nilai pada field
+
             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
             var modal = $(this)
             // Isi nilai pada field
@@ -183,6 +290,12 @@
                     if (response.status) {
                         modal.find('#id').val(response.data['id']);
                         modal.find('#name').val(response.data['name']);
+                        modal.find('#price').val(response.data['price']);
+                        modal.find('#images').val(response.data['images']);
+                        modal.find('#category_id').val(response.data['category_id']);
+                        modal.find('#supplier_id').val(response.data['supplier_id']);
+                        modal.find('#unit_id').val(response.data['unit_id']);
+
                     } else {
                         Swal.fire(
                             'Gagal!',

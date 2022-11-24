@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\CategoryProduct;
 use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\UnitProduct;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -17,6 +20,9 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $units = UnitProduct::all();
+        $categories = CategoryProduct::all();
+        $suppliers = Supplier::all();
         if ($request->ajax()) {
             $data = Product::all();
             return DataTables::of($data)->addIndexColumn()
@@ -29,11 +35,22 @@ class ProductController extends Controller
                         'padding'         => '85px',
                     ]);
                 })
-
+                ->addColumn('id', function ($data) {
+                    return $data->id;
+                })
+                ->addColumn('category', function ($data) {
+                    return $data->category->name;
+                })
+                ->addColumn('unit', function ($data) {
+                    return $data->unit->name;
+                })
+                ->addColumn('supplier', function ($data) {
+                    return $data->supplier->name;
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('product');
+        return view('products.product', compact(['units', 'categories', 'suppliers']));
     }
 
     /**
@@ -55,7 +72,18 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            Product::create($request->all());
+            $images = $request->file('images');
+            $rand = rand() . '.' . $images->getClientOriginalExtension();
+            $imageName = $request->images->storeAs('images/products', $rand);
+            $form_data = array(
+                'category_id' => $request->category_id,
+                'unit_id' => $request->unit_id,
+                'supplier_id' => $request->supplier_id,
+                'images' => $imageName,
+                'name' => $request->name,
+                'price' => $request->price,
+            );
+            Product::create($form_data);
             return redirect()->route('product.index')->with('success', 'Data Product Berhasil Diinput!');
         } catch (\Throwable $th) {
             return redirect()->route('product.index')->with('error', 'Data Product Gagal Diinput!');
@@ -104,7 +132,28 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         try {
-            Product::where('id', $id)->update($request->except('_token', '_method'));
+            $form_data = array(
+                'category_id' => $request->category_id,
+                'unit_id' => $request->unit_id,
+                'supplier_id' => $request->supplier_id,
+                'name' => $request->name,
+                'price' => $request->price,
+            );
+            if (isset($request->images)) {
+                $images = $request->file('images');
+                $rand = rand() . '.' . $images->getClientOriginalExtension();
+                $imageName = $request->images->storeAs('images/products', $rand);
+                $form_data = array(
+                    'category_id' => $request->category_id,
+                    'unit_id' => $request->unit_id,
+                    'supplier_id' => $request->supplier_id,
+                    'images' => $imageName,
+                    'name' => $request->name,
+                    'price' => $request->price,
+                );
+            }
+
+            Product::where('id', $id)->update($form_data);
             return response()->json([
                 'status' => true,
                 'message' => 'success',

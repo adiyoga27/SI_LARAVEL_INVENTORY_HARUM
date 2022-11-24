@@ -24,10 +24,10 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:category_products,id',
             'unit_id' => 'required|exists:unit_products,id',
             'supplier_id' => 'required|exists:suppliers,id',
-            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required',
             'price' => 'required',
         ];

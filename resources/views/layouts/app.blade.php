@@ -132,7 +132,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="#" key="t-horizontal">Barang</a>
+                                    <a href="{{ route('product.index') }}" key="t-horizontal">Barang</a>
 
                                 </li>
                                 <li>
