@@ -4,11 +4,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Sistem Pengajuan Keluhan Penerangan | Kabupaten Kelungkung</title>
+    <title>Sistem Informasi Inventory | Alas Harum Bali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-        content="Sistem Informasi Pengaduan Penerangan Jalan Umum Berbasis Mobile Pada Dinas Perhubungan Kabupaten Klungkung"
-        name="description" />
+    <meta content="SISTEM INFORMASI INVENTORY PADA ALAS HARUM BALI MENGGUNAKAN QR CODE BERBASIS WEB" name="description" />
     <meta content="codingaja.com" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- App favicon -->
