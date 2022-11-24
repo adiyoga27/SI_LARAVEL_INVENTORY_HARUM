@@ -74,7 +74,7 @@ class ProductController extends Controller
         try {
             $images = $request->file('images');
             $rand = rand() . '.' . $images->getClientOriginalExtension();
-            $imageName = $request->images->storeAs('images/products', $rand);
+            $imageName = $request->images->storeAs('images', $rand);
             $form_data = array(
                 'category_id' => $request->category_id,
                 'unit_id' => $request->unit_id,
@@ -142,7 +142,7 @@ class ProductController extends Controller
             if (isset($request->images)) {
                 $images = $request->file('images');
                 $rand = rand() . '.' . $images->getClientOriginalExtension();
-                $imageName = $request->images->storeAs('images/products', $rand);
+                $imageName = $request->images->storeAs('images', $rand);
                 $form_data = array(
                     'category_id' => $request->category_id,
                     'unit_id' => $request->unit_id,
