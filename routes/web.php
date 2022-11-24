@@ -19,16 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/login', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::prefix('/auth')->group(function () {
     Route::post('/verify', [AuthController::class, 'verify']);
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 Route::group(['middleware' => 'auth'], function () {
 
 
+    Route::get('/', [DashboardController::class, 'index']);
     Route::resource('category-product', CategoryProductController::class);
     Route::resource('unit-product', UnitProductController::class);
     Route::resource('supplier', SupplierController::class);

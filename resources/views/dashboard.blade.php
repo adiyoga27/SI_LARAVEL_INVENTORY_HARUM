@@ -56,10 +56,10 @@
                                                 <i class="bx bx-archive-in"></i>
                                             </span>
                                         </div>
-                                        <h5 class="font-size-14 mb-0">Selesai</h5>
+                                        <h5 class="font-size-14 mb-0">Product</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>15 Item <i class=" ms-1 text-success"></i></h4>
 
                                     </div>
                                 </div>
@@ -75,10 +75,10 @@
                                                 <i class="bx bx-copy-alt"></i>
                                             </span>
                                         </div>
-                                        <h5 class="font-size-14 mb-0">Sedang Diperbaiki</h5>
+                                        <h5 class="font-size-14 mb-0">Inv Pembelian</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>0 pcs <i class=" ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>
@@ -95,10 +95,10 @@
                                                 <i class="bx bx-purchase-tag-alt"></i>
                                             </span>
                                         </div>
-                                        <h5 class="font-size-14 mb-0">Belum Ditanggapi</h5>
+                                        <h5 class="font-size-14 mb-0">Inv Penjualan</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class="ms-1 text-success"></i></h4>
+                                        <h4>0 pcs <i class="ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>
